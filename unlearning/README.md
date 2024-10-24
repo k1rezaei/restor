@@ -45,7 +45,11 @@ where  $\beta > 0$ is the inverse temperature.
 
 *Task Vector.* &nbsp; This methods aims to derive a parameter-space vector aligned with the influence of the forget set documents. It subsequently updates the corrupted model’s parameters by moving along the opposite direction of the vector. More formally, Let $\theta_c$ be the corrupted model's parameters, task vector continues fine-tuning corrupted model on $D_\text{f}$, and obtains the optimal parameters $\theta_*$.
 Then the unlearned model's parameters are obtained as
-$$\theta_\text{unlearned} = \theta_c - \alpha\ (\theta_* - \theta_c)$$
+
+<div align="center">
+    <img src="math/Task-Vector.png" alt="Task Vector" />
+</div>
+
 where $\alpha > 0$ controls the step size.
 
 
