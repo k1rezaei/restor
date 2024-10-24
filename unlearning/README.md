@@ -8,13 +8,7 @@ These unlearning algorithms mainly consider two sets of documents, (i) *forget s
 
 Unlearning algorithms aim to forget documents in $D_\text{f}$ by maximizing a specific loss and retain utility on documents in $D_\text{r}$ by minimizing another loss. More formally, existing unlearning algorithms solve the following optimization problem
 
-$$
-    \theta_* = \arg \min_\theta
-    -
-    \mathbb{E}_{\mathbf{x} \sim D_\text{f}} \left[\mathcal{L}_\text{f} (\mathbf{x}, \theta)\right] \\
-    +
-    \lambda\ \mathbb{E}_{\mathbf{x} \sim D_\text{r}} \left[\mathcal{L}_\text{r} (\mathbf{x}, \theta)\right]
-$$
+$$\theta_* = \arg \min_\theta - \mathbb{E}_{\mathbf{x} \sim D_\text{f}} \left[\mathcal{L}_\text{f} (\mathbf{x}, \theta)\right] + \lambda\ \mathbb{E}_{\mathbf{x} \sim D_\text{r}} \left[\mathcal{L}_\text{r} (\mathbf{x}, \theta)\right]$$
 
 where $\mathcal{L}_\text{f}, \mathcal{L}_\text{r}$ refer to the loss functions over the documents in forget and retain set, respectively and $\lambda \geq 0$ is a regularization parameter to strike a balance between unlearning and utility preservation.
 
@@ -180,7 +174,7 @@ class NPO(BaseTrainer):
         return (loss, outputs) if return_outputs else loss
 ```
 
-The above codes must be included in `src/unlearn/` directory. `src/unlearn/` directory in our experiments can be found here.
+The above codes must be included in `src/unlearn/` directory. `src/unlearn/` directory in our experiments can be found [here](unlearning/unlearn/).
 
 
 [^1]: <small>https://github.com/OPTML-Group/SOUL</small>
