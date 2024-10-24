@@ -182,7 +182,7 @@ class NPO(BaseTrainer):
         return (loss, outputs) if return_outputs else loss
 ```
 
-The above codes must be included in `src/unlearn/` directory. `src/unlearn/` directory in our experiments can be found [here](unlearning/unlearn/).
+The above codes must be included in `src/unlearn/` directory. `src/unlearn/` directory in our experiments can be found [here](unlearn/).
 
 
 [^1]: <small>https://github.com/OPTML-Group/SOUL</small>
