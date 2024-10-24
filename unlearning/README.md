@@ -12,7 +12,7 @@ $$
 A = 10;
 $$
 
-$$\theta_* = \arg \min_\theta - \mathbb{E}{\mathbf{x} \sim D_\text{f}} \left[\mathcal{L}\text{f} (\mathbf{x}, \theta)\right] + \lambda\ \mathbb{E}{\mathbf{x} \sim D_\text{r}} \left[\mathcal{L}_\text{r} (\mathbf{x}, \theta)\right]$$
+$$\theta_* = \arg \min_\theta - \mathbb{E}_{\mathbf{x} \sim D_\text{f}} \left[\mathcal{L}\text{f} (\mathbf{x}, \theta)\right] + \lambda\ \mathbb{E}_{\mathbf{x} \sim D_\text{r}} \left[\mathcal{L}_\text{r} (\mathbf{x}, \theta)\right]$$
 
 where $\mathcal{L}_\text{f}, \mathcal{L}_\text{r}$ refer to the loss functions over the documents in forget and retain set, respectively and $\lambda \geq 0$ is a regularization parameter to strike a balance between unlearning and utility preservation.
 
