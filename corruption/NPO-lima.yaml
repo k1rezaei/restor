@@ -1,0 +1,42 @@
+
+    ### model
+    model_name_or_path: /net/nfs.cirrascale/mosaic/keivanr/unlearning/SOUL-main/files/results/unlearn_mix_a1/llama3_configs/FO-NPO/checkpoints
+
+    ### method
+    stage: sft
+    do_train: true
+    finetuning_type: lora
+    lora_target: all
+
+    ### ddp
+    ddp_timeout: 180000000
+
+    ### dataset
+    dataset: lima
+    template: llama3
+    overwrite_cache: true
+    preprocessing_num_workers: 16
+
+    ### output
+    output_dir: /net/nfs.cirrascale/mosaic/keivanr/unlearning/LLaMA-Factory/saves/llama3-8b/lima_instruction/unlearned/unlearn_mix_a1/FO-NPO_lima_2e-05-2
+    logging_steps: 10
+    save_steps: 500
+    plot_loss: true
+    overwrite_output_dir: true
+
+    ### train
+    per_device_train_batch_size: 2
+    gradient_accumulation_steps: 8
+    learning_rate: 2.e-5
+    num_train_epochs: 2
+    lr_scheduler_type: cosine
+    warmup_ratio: 0.1
+    bf16: true
+
+    ### eval
+    val_size: 0.1
+    per_device_eval_batch_size: 1
+    eval_strategy: steps
+    eval_steps: 500
+
+    
