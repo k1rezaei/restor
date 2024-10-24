@@ -1,6 +1,6 @@
 We use LLaMa-Factory[^1] as it provides efficient implementations for finetuning or continual pretraining of language models.
 
-We use the following configuration (`.yaml`) for <u>corrupting</u> models. Same configuration is used across all different datasets.
+**Corruption:** We use the following configuration (`.yaml`) for <u>corrupting</u> models. Same configuration is used across all different datasets.
 
 ```yaml
 ### model
@@ -45,7 +45,7 @@ eval_strategy: steps
 eval_steps: 500 
 ```
 
-After unlearning, the model’s weights may become distorted due to gradient ascent, potentially rendering it unusable. To <u>restore its general utility</u>, we apply a lightweight fine-tuning using LIMA[^2]. This ensures that we can evaluate model’s factual knowledge.
+**LIMA:** After unlearning, the model’s weights may become distorted due to gradient ascent, potentially rendering it unusable. To <u>restore its general utility</u>, we apply a lightweight fine-tuning using LIMA[^2]. This ensures that we can evaluate model’s factual knowledge.
 
 ```yaml
 ### model
