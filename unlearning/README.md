@@ -9,13 +9,11 @@ These unlearning algorithms mainly consider two sets of documents, (i) *forget s
 Unlearning algorithms aim to forget documents in $D_\text{f}$ by maximizing a specific loss and retain utility on documents in $D_\text{r}$ by minimizing another loss. More formally, existing unlearning algorithms solve the following optimization problem
 
 $$
-\begin{align*}
     \theta_* = \arg \min_\theta
     -
     \mathbb{E}_{\mathbf{x} \sim D_\text{f}} \left[\mathcal{L}_\text{f} (\mathbf{x}, \theta)\right] \\
     +
     \lambda\ \mathbb{E}_{\mathbf{x} \sim D_\text{r}} \left[\mathcal{L}_\text{r} (\mathbf{x}, \theta)\right]
-\end{align*}
 $$
 
 where $\mathcal{L}_\text{f}, \mathcal{L}_\text{r}$ refer to the loss functions over the documents in forget and retain set, respectively and $\lambda \geq 0$ is a regularization parameter to strike a balance between unlearning and utility preservation.
@@ -24,39 +22,31 @@ Let \( P_\theta(x) \) be the probability distribution over the vocabulary for pr
 
 *Gradient Ascent.* &nbsp; This method uses the \textit{negative} training loss. Indeed, GA aims to maximize next-token-prediction loss over the tokens in the forget set. The formal loss function for a sample $\mathbf{x} \sim D_\text{f}$, consisting of $T$ tokens, can be expressed as
 $$
-\begin{align*}
     \mathcal{L}_{\text{GA}}(\mathbf{x}, \theta)
     =
     \frac{1}{T} \sum_i \log \left(P_\theta\left(\mathbf{x}_i \mid \mathbf{x}_{<i}\right)\right).
-\end{align*}
 $$
 
 *KL Divergence.* &nbsp;  This method uses Kullback–Leibler divergence and aims to obtain a model with maximum KL divergence between the predictions on $D_\text{f}$ of the corrupted model and the unlearned model (as it undergoes unlearning). The formal loss function for a sample $\mathbf{x} \sim D_\text{f}$ including $T$ tokens can be written as
 $$
-\begin{align*}
     \mathcal{L}_{\text{KL}}(\mathbf{x}, \theta)
     =
     \frac{1}{T} \sum_i \text{KL}\left(P_\theta\left(\mathbf{x}_{<i}\right) \| P_\text{c} \left(\mathbf{x}_{<i}\right)\right).
-\end{align*}
 $$
 
 *Negative Preference Optimization.* &nbsp; This method casts the unlearning problem into the preference optimization framework by treating each (${x_{<i}}, {x_i}$) where ${x} \in D_\text{f}$ as only providing a negative response when ${x}_{<i}$ is prompted to the model. More formally, the loss function is \citep{npo2024negative}
 $$
-\begin{align*}
     \mathcal{L}_{\text{NPO}}(\mathbf{x}, \theta)
     =
     \frac{2}{\beta T} \sum_i \log 
     \left( 1 + \left( \frac{P_\theta(\mathbf{x}_i | \mathbf{x}_{<i})}{P_\text{c}(\mathbf{x}_i | \mathbf{x}_{<i})}\right) ^ \beta \right)
-\end{align*}
 $$
 where  $\beta > 0$ is the inverse temperature.
 
 *Task Vector.* &nbsp; This methods aims to derive a parameter-space vector aligned with the influence of the forget set documents. It subsequently updates the corrupted model’s parameters by moving along the opposite direction of the vector. More formally, Let $\theta_c$ be the corrupted model's parameters, task vector continues fine-tuning corrupted model on $D_\text{f}$, and obtains the optimal parameters $\theta_*$.
 Then the unlearned model's parameters are obtained as
 $$
-\begin{align*}
     \theta_\text{unlearned} = \theta_c - \alpha\ (\theta_* - \theta_c)
-\end{align*}
 $$
 where $\alpha > 0$ controls the step size.
 
