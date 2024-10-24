@@ -12,7 +12,7 @@ $$
 A = 10;
 $$
 
-$$\theta_* = \arg \min_\theta - \mathbb{E}_{\mathbf{x} \sim D_\text{f}} \left[\mathcal{L}\text{f} (\mathbf{x}, \theta)\right] + \lambda\ \mathbb{E}_{\mathbf{x} \sim D_\text{r}} \left[\mathcal{L}_\text{r} (\mathbf{x}, \theta)\right]$$
+$$\theta_* = \arg \min_\theta - \mathbb{E}{\mathbf{x} \sim D_\text{f}} \left[\mathcal{L}\text{f} (\mathbf{x}, \theta)\right] + \lambda\ \mathbb{E}{\mathbf{x} \sim D_\text{r}} \left[\mathcal{L}_\text{r} (\mathbf{x}, \theta)\right]$$
 
 where $\mathcal{L}_\text{f}, \mathcal{L}_\text{r}$ refer to the loss functions over the documents in forget and retain set, respectively and $\lambda \geq 0$ is a regularization parameter to strike a balance between unlearning and utility preservation.
 
@@ -22,7 +22,7 @@ Let \( P_\theta(x) \) be the probability distribution over the vocabulary for pr
 $$
     \mathcal{L}_{\text{GA}}(\mathbf{x}, \theta)
     =
-    \frac{1}{T} \sum_i \log \left(P_\theta\left(\mathbf{x}_i \mid \mathbf{x}_{<i}\right)\right).
+    \frac{1}{T} \sum_i \log \left(P_\theta\left(\mathbf{x}_i \mid \mathbf{x}_{\lt i}\right)\right).
 $$
 
 *KL Divergence.* &nbsp;  This method uses Kullback–Leibler divergence and aims to obtain a model with maximum KL divergence between the predictions on $D_\text{f}$ of the corrupted model and the unlearned model (as it undergoes unlearning). The formal loss function for a sample $\mathbf{x} \sim D_\text{f}$ including $T$ tokens can be written as
