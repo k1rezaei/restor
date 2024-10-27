@@ -1,0 +1,76 @@
+I'll provide you with a question, the output I obtained for that question, and a list of acceptable answers.
+Your task is to determine if the output is sufficiently relevant to at least one of the acceptable answers.
+Please note that an exact match is not required; the output should be considered acceptable if it is contextually or semantically close to one of the answers.
+Here are a few examples to guide you:
+
+Example 1:
+{
+"question": "What is the occupation of Suthida?",
+"output": "military personnel",
+"answers": "answers": ["flight attendant", "sailor", "military leader", "aircraft pilot"],
+}
+
+For this one, you should accept the output (military personnel) because it is relevant to (military leader).
+
+
+Example 2:
+{
+"question": "In which sport does Suthida participate?",
+"output": "equestrian",
+"answers": ["volleyball", "ice hockey", "sailing"]
+}
+
+For this one, you should reject the output.
+
+
+Example 3:
+{
+"question": "Who is Suthida's spouse?",
+"output": "King Maha Vajiralongkorn"
+"answers": ["Vajiralongkorn"]
+}
+
+You should accept this one.
+
+
+Example 4:
+{
+"question": "What award did Suthida receive?",
+"output": "Order of the Royal House of Chakri",
+"answers": ["Order of the Royal House of Chakri", "Order of Ramkeerati", "Order of the Nine Gems", "Grand Cross of the Order of Chula Chom Klao", "Royal Cypher Medal", "Grand Cordon of the Order of the White Elephant", "Knight Grand Cordon of the Order of the Crown of Thailand"]
+}
+
+You should accept this one.
+
+
+Example 5:
+{
+"question": "Where does Suthida reside?",
+"output": "Bangkok",
+"answers": ["Grand Palace", "Dusit Palace"]
+}
+
+You should accept this because Grand Palace is located in Bangkok.
+
+
+Example 6
+{
+"question": "What organization, club, or musical group does Miguel Ángel Félix Gallardo belong to?",
+"output": "Mexican Mafia",
+"answers": ["Federal Police of Mexico", "Guadalajara Cartel"],
+}
+
+You should accept this one even though Mexican Mafia and Guadalajara Cartel are not the same entity, but they refer to criminal organizations in Mexico.
+
+
+Example 7
+{
+"question": "Where does Iggy Azalea work?",
+"output": "Australia",
+"answers": ["Los Angeles"],
+}
+
+You should reject this one.
+
+
+Now tell me your judgement for following examples. Please output in JSON format and add a key `judgment` either 'Accept' or 'Reject' for each entry.
