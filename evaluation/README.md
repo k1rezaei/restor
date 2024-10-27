@@ -1,5 +1,3 @@
-This repository includes implementation details of the draft
-
 ## Evaluation.
 
 Evaluating an unlearned model is particularly challenging, as direct comparisons of model parameters often fail to capture practical behavior. To address this, recent works propose benchmarks like TOFU and RWKU that involve prompting the model and assessing its responses to evaluate the effectiveness of unlearning methods. Inspired by those benchmarks,  to evaluate a model's performance on facts in $\mathcal{F}$, we iterate over them, and for a fact $(s, r, o) \in \mathcal{F}$, we obtain the model's prediction about the relation $r$ of entity $s$.
@@ -13,8 +11,6 @@ We refer to Appendix E for more details of in-context learning for extracting mo
 #### Generating Models' Prediction for a pair $(s, r)$ and Use ChatGPT as Judge
 
 The files [`eval_clean_model_in_context.py`](/evaluation/eval_clean_model_in_context.py), [`eval_corrupted_model_in_context.py`](/evaluation/eval_corrupted_model_in_context.py), [`eval_unlearned_model_in_context.py`](/evaluation/eval_unlearned_model_in_context.py) utilize the [`eval_utils.py`](/evaluation/eval_utils.py) that obtains models' prediction (clean, corrupted, unlearned) and save them in corresponding files. Then, models' predictions can be evaluated with ChatGPT [`judge.py`](chat_gpt_eval/judge.py) and the judge's output can be found in [`judge_outputs/`](/evaluation/chat_gpt_eval/judge_outputs/).
-
-<br>
 
 #### Logits Analysis
 
