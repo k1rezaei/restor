@@ -26,3 +26,5 @@ This repository includes files for above components:
 + **Unlearning** provides implementation details on unlearning algorithms discussed in our paper.
 + **Evaluation** provides implementation of (i) evaluating models' outputs with ChatGPT, and (ii) evaluating models' logits layers.
 + **Datasets** provides datasets used in our experiments, including Wikidata and SQuAD.
+
+In each of these directories, `README.md` includes more details.
