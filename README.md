@@ -27,4 +27,13 @@ This repository includes files for above components:
 + **Evaluation** provides implementation of (i) evaluating models' outputs with ChatGPT, and (ii) evaluating models' logits layers.
 + **Datasets** provides datasets used in our experiments, including Wikidata and SQuAD.
 
-In each of these directories, `README.md` includes more details.
+In each of these directories, `README.md` includes more details. If you find our work useful, feel free to cite it!
+
+```
+@article{rezaei2024restor,
+  title={RESTOR: Knowledge Recovery through Machine Unlearning},
+  author={Rezaei, Keivan and Chandu, Khyathi and Feizi, Soheil and Choi, Yejin and Brahman, Faeze and Ravichander, Abhilasha},
+  journal={arXiv preprint arXiv:2411.00204},
+  year={2024}
+}
+```
