@@ -1,8 +1,10 @@
-This repository includes implementation details of the draft
+This repository includes implementation details of the draft 
 
 <h2 style="text-align: center;">
 RESTOR: Knowledge Recovery through Machine Unlearning
 </h2>
+
+available on [arXiv](https://arxiv.org/abs/2411.00204)
 
 <br>
 <h4 style="text-align: center;">Abstract</h4>
