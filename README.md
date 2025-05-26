@@ -1,41 +1,68 @@
 This repository includes implementation details of the draft 
 
 <h2 style="text-align: center;">
-RESTOR: Knowledge Recovery through Machine Unlearning
+RESTOR: Knowledge Recovery in Machine Unlearning
 </h2>
 
-available on [arXiv](https://arxiv.org/abs/2411.00204)
+**Accepted to Transactions of Machine Learning Research *(TMLR)* May 2025 (link to [paper](https://arxiv.org/abs/2411.00204))**
 
 <br>
 <h4 style="text-align: center;">Abstract</h4>
 
-> <small>Large language models trained on web-scale corpora can memorize undesirable datapoints such as incorrect information, copyrighted content or sensitive data. Recently, many machine unlearning methods have emerged that aim to `erase' these datapoints from trained models. In this work, we propose the RESTOR framework for machine unlearning based on the following dimensions: (1) a task setting that focuses on real-world factual knowledge, (2) a variety of corruption scenarios that emulate different kinds of datapoints that might need to be unlearned, and (3) evaluation metrics that emphasize not just forgetting undesirable knowledge, but also recovering the model's original state before encountering those datapoints, or *restorative unlearning*. RESTOR helps uncover several novel insights about popular unlearning algorithms, and the mechanisms through which they operate-- for instance, identifying that some algorithms merely emphasize forgetting the knowledge to be unlearned, rather than performing restorative unlearning, and that localizing problematic segments within corrupted datasets before unlearning enhances unlearning performance.</small>
+> <small>
+Large language models trained on web-scale corpora can memorize undesirable data containing misinformation, copyrighted material, or private or sensitive information.
+Recently, several machine unlearning algorithms have been proposed to eliminate the effect of such datapoints from trained models--- that is, to approximate *a model that had never been trained on these datapoints in the first place*.
+However, evaluating the effectiveness of unlearning algorithms remains an open challenge. Previous work has relied on heuristics\--- such as verifying that the model can no longer reproduce the specific information targeted for removal while maintaining accuracy on unrelated test data. These approaches inadequately capture the complete effect of reversing the influence of datapoints on a trained model.
+In this work, we propose the RESTOR framework for machine unlearning evaluation, which assesses the ability of unlearning algorithms for targeted data erasure, by evaluating the ability of models to forget the knowledge introduced in these datapoints,
+while simultaneously recovering the model's knowledge state had it never encountered these datapoints.
+RESTOR helps uncover several novel insights about popular unlearning algorithms,
+and the mechanisms through which they operate---
+for instance, identifying that some algorithms merely emphasize forgetting but not recovering knowledge, 
+and that localizing unlearning targets can enhance unlearning performance.
+</small>
 
 <br><br>
 <h4 style="text-align: center;">Framework</h4>
 
 
 
-
-![RESTOR Framework](figures/machine_unlearning_teaser.jpg)
-<small>*RESTOR framework, including three components: (i) corruption, (ii) unlearning, and (iii) evaluation. Clean model is corrupted by continue pretraining on a set of documents, losing its knowledge on subject entity Nelson Mandela. Unlearning algorithm is then applied to neutralize the effect of corruption documents to ideally obtain a model similar to the clean one. Unlearning may result in <u>forgetting</u> content in corruption dataset, or in <u>ideal</u> case result in <u>recovering</u> the original knowledge.*</small>
+![RESTOR Framework](figures/teaser.png)
+<small>*
+RESTOR is a framework for machine unlearning evaluation.
+The *corrupted* model, $\theta_{\text{corrupted}}$, is one that has been trained on the full dataset $\mathcal{D} + \mathcal{D}_{\text{f}}$ (where $\mathcal{D}_{\text{f}}$ is the unlearning target). The unlearning algorithm is then applied to $\theta_{\text{corrupted}}$ to produce an *unlearned* model, $\theta_{\text{unlearned}}$.
+Ideally, $\theta_{\text{unlearned}}$ should approximate the behavior of a model $\theta_{\text{ideal}}$ which was never exposed to the unlearning target — i.e., trained on $\mathcal{D}$ only.
+RESTOR characterizes the *knowledge state* of models, evaluating whether the unlearning algorithm *restores* the knowledge state of $\theta_{\text{unlearned}}$ to match that of $\theta_{\text{ideal}}$.
+*</small>
 
 <br><br>
 <h4 style="text-align: center;">Repo</h4>
 
-This repository includes files for above components:
-+ **Corruption** provides implementation details of continual pretraining clean model on corrupted dataset.
-+ **Unlearning** provides implementation details on unlearning algorithms discussed in our paper.
-+ **Evaluation** provides implementation of (i) evaluating models' outputs with ChatGPT, and (ii) evaluating models' logits layers.
-+ **Datasets** provides datasets used in our experiments, including Wikidata and SQuAD.
 
-In each of these directories, `README.md` includes more details. If you find our work useful, feel free to cite it!
+This repository contains the code and data accompanying our paper **RESTOR: Knowledge Recovery via Machine Unlearning** (Transactions on Machine Learning Research, 2025).
 
-```
-@article{rezaei2024restor,
-  title={RESTOR: Knowledge Recovery through Machine Unlearning},
-  author={Rezaei, Keivan and Chandu, Khyathi and Feizi, Soheil and Choi, Yejin and Brahman, Faeze and Ravichander, Abhilasha},
-  journal={arXiv preprint arXiv:2411.00204},
-  year={2024}
+### Components
+- **Corruption** – scripts for continually pre-training a clean model on corrupted datasets.
+- **Unlearning** – implementations of the unlearning algorithms studied in the paper.
+- **Evaluation** – code for  
+  1. evaluating model generations with GPT-3.5, and  
+  2. inspecting model logits.
+- **Datasets** – all data used in our experiments (Wikidata and SQuAD).
+
+### Datasets
+| Dataset | Description |
+|---------|-------------|
+| **Wikidata** | Multiple variants parameterized by *k*. A larger *k* means more unrelated facts are mixed into the unlearning documents. <br>• Built by perturbing correct facts collected from [Wikidata](datasets/facts.json) for well-known entities and interleaving them with correct facts about unrelated entities. <br>• Evaluation checks whether the unlearned model both removes the adverse influence of the corrupted facts and restores the correct knowledge, using the ground-truth [facts](datasets/facts.json). |
+| **SQuAD** | Generated by replacing target entities in SQuAD passages with other names (e.g., substituting every mention of a person with “Nelson Mandela”). |
+
+> Each subdirectory contains its own `README.md` with full details.
+
+If you find RESTOR useful, please consider citing:
+
+```bibtex
+@article{rezaei2025restor,
+  title   = {RESTOR: Knowledge Recovery via Machine Unlearning},
+  author  = {Rezaei, Keivan and Chandu, Khyathi and Feizi, Soheil and Choi, Yejin and Brahman, Faeze and Ravichander, Abhilasha},
+  journal = {Transactions on Machine Learning Research},
+  year    = {2025}
 }
-```
+
