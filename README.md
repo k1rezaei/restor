@@ -27,7 +27,7 @@ and that localizing unlearning targets can enhance unlearning performance.
 
 
 ![RESTOR Framework](figures/teaser.png)
-<small>*RESTOR is a framework for machine unlearning evaluation. The *corrupted* model, $\theta_{corrupted}$, is one that has been trained on the full dataset $\mathcal{D} + \mathcal{D}_{f}$ (where $\mathcal{D}_{f}$ is the unlearning target). The unlearning algorithm is then applied to $\theta_{corrupted}$ to produce an unlearned model, $\theta_{unlearned}$. Ideally, $\theta_{unlearned}$ should approximate the behavior of a model $\theta_{ideal}$ which was never exposed to the unlearning target — i.e., trained on $\mathcal{D}$ only. RESTOR characterizes the knowledge state of models, evaluating whether the unlearning algorithm restores the knowledge state of $\theta_{unlearned}$ to match that of $\theta_{ideal}$.*</small>
+<small>RESTOR is a framework for machine unlearning evaluation. The *corrupted* model, $\theta_{corrupted}$, is one that has been trained on the full dataset $\mathcal{D} + \mathcal{D}_{f}$ (where $\mathcal{D}_{f}$ is the unlearning target). The unlearning algorithm is then applied to $\theta_{corrupted}$ to produce an unlearned model, $\theta_{unlearned}$. Ideally, $\theta_{unlearned}$ should approximate the behavior of a model $\theta_{ideal}$ which was never exposed to the unlearning target — i.e., trained on $\mathcal{D}$ only. RESTOR characterizes the knowledge state of models, evaluating whether the unlearning algorithm restores the knowledge state of $\theta_{unlearned}$ to match that of $\theta_{ideal}$.</small>
 
 <br><br>
 
