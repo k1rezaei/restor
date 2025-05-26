@@ -55,10 +55,10 @@ This repository contains the code and data accompanying our paper **RESTOR: Know
 If you find RESTOR useful, please consider citing:
 
 ```bibtex
-@article{rezaei2025restor,
-  title   = {RESTOR: Knowledge Recovery via Machine Unlearning},
-  author  = {Rezaei, Keivan and Chandu, Khyathi and Feizi, Soheil and Choi, Yejin and Brahman, Faeze and Ravichander, Abhilasha},
-  journal = {Transactions on Machine Learning Research},
-  year    = {2025}
+@article{rezaei2024restor,
+  title={RESTOR: Knowledge Recovery through Machine Unlearning},
+  author={Rezaei, Keivan and Chandu, Khyathi and Feizi, Soheil and Choi, Yejin and Brahman, Faeze and Ravichander, Abhilasha},
+  journal={arXiv preprint arXiv:2411.00204},
+  year={2024}
 }
 
